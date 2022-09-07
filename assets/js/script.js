@@ -149,7 +149,7 @@ class App {
         this._renderWorkout(workout);
 
         // Hide workout on list and clear input fields
-        this._hideForm()
+        this._hideForm();
         
     }
 
@@ -171,6 +171,7 @@ class App {
     }
 
     _renderWorkout(workout) {
+        const workTypeRunning = workout.type === 'running'
         let html = `
             <li class="workout workout--${workout.type}" data-id="${workout.id}">
                 <h2 class="workout__title">${workout.description}</h2>
@@ -184,38 +185,23 @@ class App {
                     <span class="workout__value">${workout.duration}</span>
                     <span class="workout__unit">min</span>
                 </div>
-            `;
-        if(workout.type === 'running')
-            html += `
                 <div class="workout__details">
-                <span class="workout__icon">⚡️</span>
-                <span class="workout__value">${workout.pace}</span>
-                <span class="workout__unit">min/km</span>
-            </div>
-            <div class="workout__details">
-                <span class="workout__icon">🦶🏼</span>
-                <span class="workout__value">${workout.cadence}</span>
-                <span class="workout__unit">spm</span>
-            </div>
+                    <span class="workout__icon">⚡️</span>
+                    <span class="workout__value">${workTypeRunning ? workout.pace : workout.speed}</span>
+                    <span class="workout__unit">${workTypeRunning ? `min/km` : `km/h`}</span>
+                </div>
+                <div class="workout__details">
+                    <span class="workout__icon">${workTypeRunning ? `🦶🏼` : `⛰`}</span>
+                    <span class="workout__value">${workTypeRunning ? workout.cadence : workout.elevationGain}</span>
+                    <span class="workout__unit">${workTypeRunning ? `spm` : `m`}</span>
+                </div>
             </li>
             `;
-        if(workout.type === 'cycling')
-            html +=`
-                <div class="workout__details">
-                <span class="workout__icon">⚡️</span>
-                <span class="workout__value">${workout.speed}</span>
-                <span class="workout__unit">km/h</span>
-            </div>
-            <div class="workout__details">
-                <span class="workout__icon">⛰</span>
-                <span class="workout__value">${workout.elevationGain}</span>
-                <span class="workout__unit">m</span>
-            </div>
-            `
             form.insertAdjacentHTML('afterend', html)
     }
 
     _hideForm() {
+        // Clean input's values
         inputDistance.value = inputDuration.value = inputCadence.value = inputElevation.value = '';
         form.style.display = 'none'
         form.classList.add('hidden');
