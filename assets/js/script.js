@@ -36,11 +36,26 @@ if(navigator.geolocation){
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png')
         .addTo(map);
 
-        // Position on map
-        L.marker(coords)
-        .addTo(map)
-        .bindPopup(`Your coords are ${coords}`)
-        .openPopup();
+        
+        map.on('click', (mapEvent) => {
+            const {lat, lng } = mapEvent.latlng
+            // Position on map
+            L.marker([lat, lng])
+            .addTo(map)
+            .bindPopup(
+                L.popup({
+                pane: 'popupPane',          
+                offset: [0, -2],            
+                maxWidth: 250,              
+                minWidth: 100,              
+                autoClose: false,            
+                closeOnClick: false,        
+                className: 'running-popup',
+            }))
+            .setPopupContent('Workout')
+            .openPopup();
+            
+        })
         },
 
     function() {
