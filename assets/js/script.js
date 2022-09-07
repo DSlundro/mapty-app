@@ -70,6 +70,7 @@ class App {
 
         form.addEventListener('submit', this._newWorkout.bind(this));
         inputType.addEventListener('change', this._toggleElevationField.bind(this));
+        containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
     }
 
     _getPosition() {
@@ -220,8 +221,19 @@ class App {
         form.classList.add('hidden');
         setTimeout( () => form.style.display = 'grid', 1000)
     }
+
+    _moveToPopup(e) {
+        const workoutEl = e.target.closest('.workout');
+        
+        if(!workoutEl) return;
+
+        // Find the same workout on map by id
+        const workout = this.#workouts.find(work => work.id === workoutEl.dataset.id);
+        console.log(workout);
+        // Change the visual
+        this.#map.setView(workout.coords, 13);
+    }
 }
 
 const app = new App();
 
-;
