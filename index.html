@@ -10,11 +10,22 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap"
       rel="stylesheet"
     />
-
     <link rel="stylesheet" href="./assets/css/style.css" />
+    
+    <!--  Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+    
+    <script
+    defer
+    src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
 
     <script defer src="./assets/js/script.js"></script>
-    <title>mapty // Map your workouts</title>
+    <script defer src="./assets/js/other.js"></script>
+    <title>Mapty - Map your workouts</title>
   </head>
   <body>
     <div class="sidebar">
@@ -105,17 +116,6 @@
           </div>
         </li> -->
       </ul>
-
-      <p class="copyright">
-        &copy; Copyright by
-        <a
-          class="twitter-link"
-          target="_blank"
-          href="https://twitter.com/jonasschmedtman"
-          >Jonas Schmedtmann</a
-        >. Use for learning or your portfolio. Don't use to teach. Don't claim
-        as your own.
-      </p>
     </div>
 
     <div id="map"></div>
